@@ -1,0 +1,15 @@
+public enum CanvasNames
+{
+    MAIN_MENU_CANVAS,
+    SETTINGS_CANVAS,
+    SHOP_CANVAS,
+    MAP_SELECTION_CANVAS
+}
+
+public enum PopUpNames
+{
+    QUIT_POPUP,
+    ARE_YOU_SURE_POPUP,
+    NEW_UPDATE_POPUP,
+    DAILY_REWARDS_POPUP
+}
