@@ -1,50 +1,46 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CanvasGroup))]
-public class CanvasIdentity : MonoBehaviour
+public class PopupIdentity : MonoBehaviour
 {
     UiManager uiManager;
     CanvasGroup canvasGroup;
     ICanvasAnimation customAnimation;
 
-    [SerializeField] private CanvasNames myCanvasName;
+    [SerializeField] private PopUpNames myPopupName;
 
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        customAnimation = GetComponentInChildren<ICanvasAnimation>();
+        customAnimation = GetComponent<ICanvasAnimation>();
     }
 
     private void Start()
     {
         uiManager = UiManager.instance;
-        uiManager.AddCanvas(this);
+        uiManager.AddPopup(this);
     }
 
-    public CanvasNames GetCanvasName()
+    public PopUpNames GetPopupName()
     {
-        return myCanvasName;
+        return myPopupName;
     }
 
-    public void EnableCanvas()
+    public void EnablePopup()
     {
         if (customAnimation != null)
         {
             customAnimation.EnableAnimation();
         }
-
-        canvasGroup.alpha = 1;
+        else
+        {
+            canvasGroup.alpha = 1;
+        }
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
     }
 
-    public void DisableCanvas()
+    public void DisablePopup()
     {
-        if (customAnimation != null)
-        {
-            customAnimation.DisableAnimation();
-        }
-
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;

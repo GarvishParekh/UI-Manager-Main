@@ -1,8 +1,10 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class FadeInCanvasAnimation : MonoBehaviour, ICanvasAnimation
 {
     CanvasGroup canvasGroup;
+
     [Header("<b>Scriptable")]
     [SerializeField] private FadeInAnimationData animationData;
 
@@ -19,7 +21,7 @@ public class FadeInCanvasAnimation : MonoBehaviour, ICanvasAnimation
 
     public void DisableAnimation()
     {
-
+        canvasGroup.alpha = 0;
     }
 
     public void ResetCanvas()
