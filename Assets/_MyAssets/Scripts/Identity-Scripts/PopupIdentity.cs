@@ -11,7 +11,7 @@ public class PopupIdentity : MonoBehaviour
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        customAnimation = GetComponent<ICanvasAnimation>();
+        customAnimation = GetComponentInChildren<ICanvasAnimation>();
     }
 
     private void Start()
@@ -31,10 +31,8 @@ public class PopupIdentity : MonoBehaviour
         {
             customAnimation.EnableAnimation();
         }
-        else
-        {
-            canvasGroup.alpha = 1;
-        }
+
+        canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
     }

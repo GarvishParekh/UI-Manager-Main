@@ -138,8 +138,8 @@ public class UiManager : MonoBehaviour
     }
     #endregion
 
-    // ---------- canvas creator
-    [ContextMenu("Canvas creator/Create canvas")]
+    // ---------- canvas creator ---------- 
+    [ContextMenu("UI-creator/Create canvas")]
     private void CreateCanvas()
     {
         GameObject prefab = Resources.Load<GameObject>("Prefabs/Main-Canvas");
@@ -147,5 +147,15 @@ public class UiManager : MonoBehaviour
 
         GameObject spawnedPrefab = Instantiate(prefab, Vector3.zero, Quaternion.identity);
         spawnedPrefab.name = "Main-Canvas";
+    }
+
+    [ContextMenu("UI-creator/Create popup")]
+    private void CreatePopup()
+    {
+        GameObject prefab = Resources.Load<GameObject>("Prefabs/Main-Popup");
+        if (prefab == null) return;
+
+        GameObject spawnedPrefab = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+        spawnedPrefab.name = "Main-Popup";
     }
 }
