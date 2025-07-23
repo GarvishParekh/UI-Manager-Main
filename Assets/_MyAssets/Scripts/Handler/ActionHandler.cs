@@ -8,5 +8,7 @@ public static class ActionHandler
 
     public static Action<PopUpNames> OpenPopup;
     public static Action<PopUpNames> ClosePopup;
+
+    public static Action<CanvasNames> OpenCanvasWithTransitionAction;
     #endregion
 }

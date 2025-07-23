@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,6 +14,11 @@ public class UiManager : MonoBehaviour
     [Header("<b>Canvas collections")]
     [SerializeField] private List<CanvasIdentity> allCanvas = new List<CanvasIdentity>();
     [SerializeField] private List<PopupIdentity> allPopup = new List<PopupIdentity>();
+
+    [Header("<b>Transition image values")]
+    [SerializeField] private Image transitionImage;
+
+    private float imageFillAmt = 0;
 
     private CanvasNames openedCanvas;
 
@@ -32,6 +38,7 @@ public class UiManager : MonoBehaviour
     {
         ActionHandler.OpenCanvasAction += OpenCanvas;
         ActionHandler.CloseCavnvasAction += CloseCanvas;
+        ActionHandler.OpenCanvasWithTransitionAction += OpenCanvasWithTransition;
 
         ActionHandler.OpenPopup += OpenPopup;
         ActionHandler.ClosePopup += ClosePopup;
@@ -41,6 +48,7 @@ public class UiManager : MonoBehaviour
     {
         ActionHandler.OpenCanvasAction -= OpenCanvas;
         ActionHandler.CloseCavnvasAction -= CloseCanvas;
+        ActionHandler.OpenCanvasWithTransitionAction -= OpenCanvasWithTransition;
 
         ActionHandler.OpenPopup -= OpenPopup;
         ActionHandler.ClosePopup -= ClosePopup;
@@ -72,6 +80,44 @@ public class UiManager : MonoBehaviour
             }
         }
     }
+
+    
+    private void OpenCanvasWithTransition(CanvasNames m_desireCanvas)
+    {
+        if (m_desireCanvas == openedCanvas) return;
+        StartCoroutine(nameof(TransitionImageAnimation), m_desireCanvas);
+    }
+
+    #region Transition-animartion
+    IEnumerator TransitionImageAnimation(CanvasNames m_desireCanvas)
+    {
+        imageFillAmt = 0;
+        while (imageFillAmt < 1)
+        {
+            imageFillAmt += Time.deltaTime * 4;
+            transitionImage.fillAmount = imageFillAmt;
+            yield return null;
+        }
+        foreach (CanvasIdentity canvas in allCanvas)
+        {
+            if (canvas.GetCanvasName() == m_desireCanvas)
+            {
+                canvas.EnableCanvas();
+                openedCanvas = m_desireCanvas;
+            }
+            else
+            {
+                canvas.DisableCanvas();
+            }
+        }
+        while (imageFillAmt > 0)
+        {
+            imageFillAmt -= Time.deltaTime * 4;
+            transitionImage.fillAmount = imageFillAmt;
+            yield return null;
+        }
+    }
+    #endregion
 
     private void CloseCanvas(CanvasNames m_desireCanvas)
     {
@@ -137,25 +183,4 @@ public class UiManager : MonoBehaviour
         allPopup.Add(m_popupToAdd);
     }
     #endregion
-
-    // ---------- canvas creator ---------- 
-    [ContextMenu("UI-creator/Create canvas")]
-    private void CreateCanvas()
-    {
-        GameObject prefab = Resources.Load<GameObject>("Prefabs/Main-Canvas");
-        if (prefab == null) return;
-
-        GameObject spawnedPrefab = Instantiate(prefab, Vector3.zero, Quaternion.identity);
-        spawnedPrefab.name = "Main-Canvas";
-    }
-
-    [ContextMenu("UI-creator/Create popup")]
-    private void CreatePopup()
-    {
-        GameObject prefab = Resources.Load<GameObject>("Prefabs/Main-Popup");
-        if (prefab == null) return;
-
-        GameObject spawnedPrefab = Instantiate(prefab, Vector3.zero, Quaternion.identity);
-        spawnedPrefab.name = "Main-Popup";
-    }
 }

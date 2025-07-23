@@ -13,7 +13,7 @@ public class UiCreator : MonoBehaviour
         spawnedPrefab.name = "Main-Canvas";
     }
 
-    [MenuItem("UI Creator/Create popup")]
+    [MenuItem("UI C reator/Create popup")]
     private static void CreatePopup()
     {
         GameObject prefab = Resources.Load<GameObject>("Prefabs/Main-Popup");

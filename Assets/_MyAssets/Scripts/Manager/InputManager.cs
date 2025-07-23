@@ -32,7 +32,7 @@ public class InputManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.W))
             ActionHandler.OpenCanvasAction(CanvasNames.MAP_SELECTION_CANVAS);
         else if (Input.GetKeyDown(KeyCode.E))
-            ActionHandler.OpenCanvasAction(CanvasNames.SETTINGS_CANVAS);
+            ActionHandler.OpenCanvasWithTransitionAction(CanvasNames.SETTINGS_CANVAS);
         else if (Input.GetKeyDown(KeyCode.R))
             ActionHandler.OpenCanvasAction(CanvasNames.SHOP_CANVAS);
         else if (Input.GetKeyDown(KeyCode.Escape))
