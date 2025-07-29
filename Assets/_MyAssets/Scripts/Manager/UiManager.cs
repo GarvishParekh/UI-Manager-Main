@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class UiManager : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class UiManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        openedCanvas = defaultCanvas + 1;
+        openedCanvas = defaultCanvas + 3;
     }
 
     private void Start()
@@ -93,6 +94,7 @@ public class UiManager : MonoBehaviour
     {
         imageFillAmt = 0;
         transitionImage.fillOrigin = 0;
+        transitionImage.raycastTarget = true;
 
         // fill the image
         while (imageFillAmt < 1)
@@ -127,6 +129,7 @@ public class UiManager : MonoBehaviour
             transitionImage.fillAmount = imageFillAmt;
             yield return null;
         }
+        transitionImage.raycastTarget = false;
     }
     #endregion
 

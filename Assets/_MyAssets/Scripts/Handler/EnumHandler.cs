@@ -1,5 +1,6 @@
 public enum CanvasNames
 {
+    NULL,
     MAIN_MENU_CANVAS,
     SETTINGS_CANVAS,
     SHOP_CANVAS,
@@ -8,9 +9,10 @@ public enum CanvasNames
 
 public enum PopUpNames
 {
+    NULL,
     QUIT_POPUP,
     ARE_YOU_SURE_POPUP,
     NEW_UPDATE_POPUP,
     DAILY_REWARDS_POPUP,
-    INSTRUCTION_POPUP
+    INSTRUCTION_POPUP,
 }
