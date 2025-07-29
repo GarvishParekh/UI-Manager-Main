@@ -19,8 +19,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] private Image transitionImage;
 
     private float imageFillAmt = 0;
-
     private CanvasNames openedCanvas;
+    private WaitForSeconds pointOne = new WaitForSeconds(0.1f);
 
     private void Awake()
     {
@@ -92,12 +92,17 @@ public class UiManager : MonoBehaviour
     IEnumerator TransitionImageAnimation(CanvasNames m_desireCanvas)
     {
         imageFillAmt = 0;
+        transitionImage.fillOrigin = 0;
+
+        // fill the image
         while (imageFillAmt < 1)
         {
             imageFillAmt += Time.deltaTime * 4;
             transitionImage.fillAmount = imageFillAmt;
             yield return null;
         }
+
+        // change of canvas
         foreach (CanvasIdentity canvas in allCanvas)
         {
             if (canvas.GetCanvasName() == m_desireCanvas)
@@ -110,6 +115,12 @@ public class UiManager : MonoBehaviour
                 canvas.DisableCanvas();
             }
         }
+
+        // change the direction
+        yield return pointOne;
+        transitionImage.fillOrigin = 1;
+
+        // un-fill the image
         while (imageFillAmt > 0)
         {
             imageFillAmt -= Time.deltaTime * 4;

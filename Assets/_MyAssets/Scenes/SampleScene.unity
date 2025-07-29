@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -852,18 +852,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<B><size=30>INSTRUCTION PANEL</size></B>
+  m_text: '<B><size=40>INSTRUCTION PANEL</size></B>
 
-    Q: MAIN MENU
+    Q: MAIN MENU <i><color=#797979>-
+    scale & fade out </i></color>
 
-    W: MAP
-    SELECTION
+    W: MAP SELECTION <i><color=#797979>- fade
+    out </i></color>
 
-    E: SETTINGS
+    E: SETTINGS <i><color=#797979>- shutter </i></color>
 
-    R: SHOP
+    R:
+    SHOP <i><color=#797979>- scale & fade out </i> </color>
 
-    ESC: OPEN / CLOSE INSTRUCTION PANEL
+    ESC: OPEN / CLOSE
+    INSTRUCTION PANEL <i><color=#797979>- scale & fade out </i></color>
 
 '
   m_isRightToLeft: 0
